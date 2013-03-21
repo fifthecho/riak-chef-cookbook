@@ -57,7 +57,7 @@ else
       action :install
     end
 
-  when "centos", "rhel"
+  when "centos", "rhel", "amazon"
     include_recipe "yum"
 
     yum_key "RPM-GPG-KEY-basho" do
