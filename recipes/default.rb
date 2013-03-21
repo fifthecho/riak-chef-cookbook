@@ -65,13 +65,24 @@ else
       action :add
     end
 
-    yum_repository "basho" do
-      repo_name "basho"
-      description "Basho Stable Repo"
-      url "http://yum.basho.com/el/#{node['platform_version'].to_i}/products/x86_64/"
-      key "RPM-GPG-KEY-basho"
-      action :add
-    end
+    when "centos", "rhel"
+      yum_repository "basho" do
+        repo_name "basho"
+        description "Basho Stable Repo"
+        url "http://yum.basho.com/el/#{node['platform_version'].to_i}/products/x86_64/"
+        key "RPM-GPG-KEY-basho"
+        action :add
+      end
+    
+    when "amazon"
+      yum_repository "basho" do
+        repo_name "basho"
+        description "Basho Stable Repo"
+        url "http://yum.basho.com/el/6/products/x86_64/"
+        key "RPM-GPG-KEY-basho"
+        action :add
+      end
+
 
     package "riak" do
       action :install
