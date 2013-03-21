@@ -93,6 +93,13 @@ else
   end
 end
 
+directory "/etc/riak" do
+  owner "root"
+  group "root"
+  mode 0755
+  action :create
+end
+
 file "#{node['riak']['package']['config_dir']}/app.config" do
   content Eth::Config.new(node['riak']['config'].to_hash).pp
   owner "root"
